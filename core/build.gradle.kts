@@ -38,7 +38,7 @@ dependencies {
     compileOnly(libs.paper.api)
     testImplementation(libs.guava)
 
-    "testImplementation"("com.google.code.findbugs:jsr305:1.3.9")
+    "testImplementation"("com.google.code.findbugs:jsr305:3.0.2")
     "testImplementation"("org.xerial:sqlite-jdbc:3.45.0.0")
     "testImplementation"("com.googlecode.json-simple:json-simple:1.1.1")
 //    "testImplementation"("junit:junit:${Versions.JUNIT}")
