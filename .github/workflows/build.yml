@@ -44,6 +44,9 @@ jobs:
           dependency-graph-continue-on-failure: false
           add-job-summary-as-pr-comment: on-failure
           gradle-home-cache-cleanup: true
+          build-scan-publish: true
+          build-scan-terms-of-service-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-service-agree: "yes"
 
       - name: Build with Gradle
         run: ./gradlew build --scan
