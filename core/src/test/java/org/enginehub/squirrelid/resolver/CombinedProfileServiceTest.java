@@ -33,6 +33,8 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class CombinedProfileServiceTest {
 
+    final long time = System.currentTimeMillis();
+
     @Test
     public void testFindAllByName() throws Exception {
         HashMapService staticResolver = new HashMapService();
@@ -41,8 +43,8 @@ public class CombinedProfileServiceTest {
 
         UUID notchUuid = UUID.fromString("069a79f4-44e9-4726-a5be-fca90e38aaf5");
         UUID fakeNotchUuid = UUID.fromString("38fe93b6-c412-44f7-a1e2-2217a08154d8");
-        Profile notchProfile = new Profile(notchUuid, "Notch");
-        Profile fakeNotchProfile = new Profile(fakeNotchUuid, "Notch");
+        Profile notchProfile = new Profile(notchUuid, "Notch", time);
+        Profile fakeNotchProfile = new Profile(fakeNotchUuid, "Notch", time);
 
         assertThat(
                 resolver.findByName("Notch"),
@@ -86,7 +88,7 @@ public class CombinedProfileServiceTest {
         ProfileService resolver = new CombinedProfileService(staticResolver, realResolver);
 
         UUID notchUuid = UUID.fromString("069a79f4-44e9-4726-a5be-fca90e38aaf5");
-        Profile notchProfile = new Profile(notchUuid, "Notch");
+        Profile notchProfile = new Profile(notchUuid, "Notch", time);
 
         assertThat(
             resolver.findByUuid(notchUuid),

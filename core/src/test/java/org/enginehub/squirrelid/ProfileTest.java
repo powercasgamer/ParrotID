@@ -28,16 +28,18 @@ import static org.hamcrest.Matchers.not;
 
 public class ProfileTest {
 
+    final long time = System.currentTimeMillis();
+
     @Test
     public void testGetUniqueId() throws Exception {
         UUID uniqueId = UUID.randomUUID();
-        assertThat(new Profile(uniqueId, "test").uniqueId(), equalTo(uniqueId));
+        assertThat(new Profile(uniqueId, "test", time).uniqueId(), equalTo(uniqueId));
     }
 
     @Test
     public void testSetUniqueId() throws Exception {
         UUID uniqueId1 = UUID.randomUUID();
-        Profile profile1 = new Profile(uniqueId1, "test");
+        Profile profile1 = new Profile(uniqueId1, "test", time);
         UUID uniqueId2 = UUID.randomUUID();
 
         assertThat(profile1.uniqueId(), equalTo(uniqueId1));
@@ -47,14 +49,14 @@ public class ProfileTest {
 
     @Test
     public void testGetName() throws Exception {
-        assertThat(new Profile(UUID.randomUUID(), "test").name(), equalTo("test"));
-        assertThat(new Profile(UUID.randomUUID(), "test2").name(), equalTo("test2"));
+        assertThat(new Profile(UUID.randomUUID(), "test", time).name(), equalTo("test"));
+        assertThat(new Profile(UUID.randomUUID(), "test2", time).name(), equalTo("test2"));
     }
 
     @Test
     public void testSetName() throws Exception {
         String name1 = "test";
-        Profile profile1 = new Profile(UUID.randomUUID(), name1);
+        Profile profile1 = new Profile(UUID.randomUUID(), name1, time);
         String name2 = "test2";
 
         assertThat(profile1.name(), equalTo(name1));
@@ -67,10 +69,10 @@ public class ProfileTest {
         UUID uniqueId1 = UUID.randomUUID();
         UUID uniqueId2 = UUID.randomUUID();
 
-        assertThat(new Profile(uniqueId1, "test"), equalTo(new Profile(uniqueId1, "test")));
-        assertThat(new Profile(uniqueId1, "test"), equalTo(new Profile(uniqueId1, "other")));
-        assertThat(new Profile(uniqueId1, "test"), not(equalTo(new Profile(uniqueId2, "test"))));
-        assertThat(new Profile(uniqueId1, "test"), not(equalTo(new Profile(uniqueId2, "other"))));
+        assertThat(new Profile(uniqueId1, "test", time), equalTo(new Profile(uniqueId1, "test", time)));
+        assertThat(new Profile(uniqueId1, "test", time), equalTo(new Profile(uniqueId1, "other", time)));
+        assertThat(new Profile(uniqueId1, "test", time), not(equalTo(new Profile(uniqueId2, "test", time))));
+        assertThat(new Profile(uniqueId1, "test", time), not(equalTo(new Profile(uniqueId2, "other", time))));
     }
 
     @Test
@@ -78,9 +80,9 @@ public class ProfileTest {
         UUID uniqueId1 = UUID.randomUUID();
         UUID uniqueId2 = UUID.randomUUID();
 
-        assertThat(new Profile(uniqueId1, "test").hashCode(), equalTo(new Profile(uniqueId1, "test").hashCode()));
-        assertThat(new Profile(uniqueId1, "test").hashCode(), equalTo(new Profile(uniqueId1, "other").hashCode()));
-        assertThat(new Profile(uniqueId1, "test").hashCode(), not(equalTo(new Profile(uniqueId2, "test").hashCode())));
-        assertThat(new Profile(uniqueId1, "test").hashCode(), not(equalTo(new Profile(uniqueId2, "other").hashCode())));
+        assertThat(new Profile(uniqueId1, "test", time).hashCode(), equalTo(new Profile(uniqueId1, "test", time).hashCode()));
+        assertThat(new Profile(uniqueId1, "test", time).hashCode(), equalTo(new Profile(uniqueId1, "other", time).hashCode()));
+        assertThat(new Profile(uniqueId1, "test", time).hashCode(), not(equalTo(new Profile(uniqueId2, "test", time).hashCode())));
+        assertThat(new Profile(uniqueId1, "test", time).hashCode(), not(equalTo(new Profile(uniqueId2, "other", time).hashCode())));
     }
 }

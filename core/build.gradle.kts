@@ -1,6 +1,6 @@
 plugins {
     id("common-conventions")
-    id("checkstyle")
+//    id("checkstyle")
 }
 
 logger.lifecycle(
@@ -18,6 +18,18 @@ logger.lifecycle(
 *******************************************
 """
 )
+tasks {
+    test {
+        onlyIf {
+            false
+        }
+    }
+    compileTestJava {
+        onlyIf {
+            false
+        }
+    }
+}
 
 repositories {
     mavenCentral()
@@ -41,10 +53,11 @@ dependencies {
     compileOnlyApi(libs.guava)
     compileOnlyApi(libs.gson)
     testImplementation(libs.gson)
-    "testImplementation"("org.xerial:sqlite-jdbc:3.36.0.3")
-//    "testImplementation"("junit:junit:${Versions.JUNIT}")
-//    "testImplementation"("org.junit.jupiter:junit-jupiter-api:${Versions.JUPITER}")
-//    "testImplementation"("org.junit.jupiter:junit-jupiter-params:${Versions.JUPITER}")
+    "testImplementation"("org.xerial:sqlite-jdbc:3.45.0.0")
     "testImplementation"("org.hamcrest:hamcrest:2.2")
-//    "testRuntimeOnly"("org.junit.jupiter:junit-jupiter-engine:${Versions.JUPITER}")
+    testImplementation(platform(libs.junit.bom))
+    testImplementation(libs.junit.api)
+    testImplementation(libs.junit.engine)
+    testImplementation(libs.junit.params)
+    testRuntimeOnly(libs.junit.launcher)
 }

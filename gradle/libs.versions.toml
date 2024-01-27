@@ -6,7 +6,7 @@ guava = "33.0.0-jre"
 jspecify = "1.3"
 sqliteJdbc = "3.36.0.3"
 mongo = "4.11.1"
-junit = "5.7.2"
+junit = "5.10.1"
 hamcrest = "2.2"
 gson = "2.10.1"
 
@@ -37,6 +37,13 @@ idea-gradle = { module = "gradle.plugin.org.jetbrains.gradle.plugin.idea-ext:gra
 run-task = { module = "xyz.jpenilla:run-task", version.ref = "run-task" }
 spotless = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
 jspecify = "org.jspecify:jspecify:0.3.0"
+
+# tests
+junit-api = { module = "org.junit.jupiter:junit-jupiter-api" }
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine" }
+junit-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+junit-params = { module = "org.junit.jupiter:junit-jupiter-params" }
 
 [plugins]
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }

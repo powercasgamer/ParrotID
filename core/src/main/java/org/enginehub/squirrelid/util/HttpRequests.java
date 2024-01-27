@@ -18,7 +18,7 @@
  */
 package org.enginehub.squirrelid.util;
 
-import org.json.simple.JSONValue;
+import com.google.gson.JsonParser;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -176,7 +176,7 @@ public class HttpRequests implements Closeable {
      */
     public HttpRequests bodyJson(Object object) throws IOException {
         contentType = "application/json";
-        body = JSONValue.toJSONString(object).getBytes();
+        body = object.toString().getBytes();
         return this;
     }
 
@@ -474,7 +474,7 @@ public class HttpRequests implements Closeable {
          * @throws java.io.IOException on I/O error
          */
         public Object asJson() throws IOException {
-            return JSONValue.parse(asString("UTF-8"));
+            return JsonParser.parseString(asString("UTF-8"));
         }
 
         /**

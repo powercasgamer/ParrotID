@@ -22,7 +22,7 @@ import com.google.common.collect.Lists;
 import org.enginehub.squirrelid.Profile;
 import org.enginehub.squirrelid.util.ExtraMatchers;
 import org.hamcrest.MatcherAssert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.UUID;
@@ -45,57 +45,58 @@ public class HashMapCacheTest {
         MatcherAssert.assertThat(
                 cache.getAllPresent(Arrays.asList(testId1, testId2, testId3)),
                 ExtraMatchers.hasSize(0));
+        final long time = System.currentTimeMillis();
 
         cache.putAll(Arrays.asList(
-                new Profile(testId1, "test1"),
-                new Profile(testId2, "test2")));
+                new Profile(testId1, "test1", time),
+                new Profile(testId2, "test2", time)));
 
         assertThat(
                 cache.getAllPresent(Lists.newArrayList(testId1)),
                 allOf(
                         ExtraMatchers.<UUID, Profile>hasSize(1),
-                        hasEntry(testId1, new Profile(testId1, "test1"))));
+                        hasEntry(testId1, new Profile(testId1, "test1", time))));
 
         assertThat(
                 cache.getAllPresent(Arrays.asList(testId1, testId2, testId3)),
                 allOf(
                         ExtraMatchers.<UUID, Profile>hasSize(2),
-                        hasEntry(testId1, new Profile(testId1, "test1")),
-                        hasEntry(testId2, new Profile(testId2, "test2"))));
+                        hasEntry(testId1, new Profile(testId1, "test1", time)),
+                        hasEntry(testId2, new Profile(testId2, "test2", time))));
 
-        cache.put(new Profile(testId1, "test1_2"));
+        cache.put(new Profile(testId1, "test1_2", time));
 
         assertThat(
                 cache.getAllPresent(Arrays.asList(testId1, testId2, testId3)),
                 allOf(
                         ExtraMatchers.<UUID, Profile>hasSize(2),
-                        hasEntry(testId1, new Profile(testId1, "test1_2")),
-                        hasEntry(testId2, new Profile(testId2, "test2"))));
+                        hasEntry(testId1, new Profile(testId1, "test1_2", time)),
+                        hasEntry(testId2, new Profile(testId2, "test2", time))));
 
-        cache.put(new Profile(testId3, "test3"));
+        cache.put(new Profile(testId3, "test3", time));
 
         assertThat(
                 cache.getAllPresent(Arrays.asList(testId1, testId2, testId3)),
                 allOf(
                         ExtraMatchers.<UUID, Profile>hasSize(3),
-                        hasEntry(testId1, new Profile(testId1, "test1_2")),
-                        hasEntry(testId2, new Profile(testId2, "test2")),
-                        hasEntry(testId3, new Profile(testId3, "test3"))));
+                        hasEntry(testId1, new Profile(testId1, "test1_2", time)),
+                        hasEntry(testId2, new Profile(testId2, "test2", time)),
+                        hasEntry(testId3, new Profile(testId3, "test3", time))));
 
         assertThat(
                 cache.getIfPresent(testId1),
-                equalTo(new Profile(testId1, "test1_2")));
+                equalTo(new Profile(testId1, "test1_2", time)));
 
         assertThat(
                 cache.getIfPresent(testId3),
-                equalTo(new Profile(testId3, "test3")));
+                equalTo(new Profile(testId3, "test3", time)));
 
         assertThat(
                 cache.getAllPresent(Arrays.asList(testId1, testId3)),
                 allOf(
                         ExtraMatchers.<UUID, Profile>hasSize(2),
-                        hasEntry(testId1, new Profile(testId1, "test1_2")),
-                        hasEntry(testId3, new Profile(testId3, "test3"))));
+                        hasEntry(testId1, new Profile(testId1, "test1_2", time)),
+                        hasEntry(testId3, new Profile(testId3, "test3", time))));
 
         assertThat(
                 cache.getIfPresent(UUID.randomUUID()),
