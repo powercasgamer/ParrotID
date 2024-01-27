@@ -31,21 +31,29 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'adopt'
+          distribution: temurin
           java-version: ${{ matrix.java }}
-          cache: 'gradle'
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-
-      - name: Validate Gradle wrapper
-        uses: gradle/wrapper-validation-action@main
-
-      - name: Build with Gradle
-        uses: gradle/gradle-build-action@main
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3.0.0-rc.1
         with:
           cache-read-only: ${{ !startsWith(github.ref, 'refs/heads/master') || github.event_name == 'pull_request' }}
-          arguments: "build --stacktrace"
+          dependency-graph: generate-and-submit
+          dependency-graph-continue-on-failure: false
+          add-job-summary-as-pr-comment: on-failure
+          gradle-home-cache-cleanup: true
+
+      - name: Build with Gradle
+        run: ./gradlew build --scan
+
+      - name: Upload build reports
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: build-reports
+          path: build/reports/
 
 #      - name: Determine status & prepare for publish
 #        if: ${{ runner.os == 'Linux' }}

@@ -43,7 +43,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Resolves names in bulk to UUIDs using Mojang's profile HTTP API.
+ * i brokey - powercas_gamer
  */
+@Deprecated
 public class HttpRepositoryService implements ProfileService {
 
     public static final String MINECRAFT_AGENT = "minecraft";

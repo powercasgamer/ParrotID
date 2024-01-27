@@ -52,6 +52,7 @@ dependencies {
     testImplementation(libs.guava)
     compileOnlyApi(libs.guava)
     compileOnlyApi(libs.gson)
+    api(libs.caffeine)
     testImplementation(libs.gson)
     "testImplementation"("org.xerial:sqlite-jdbc:3.45.0.0")
     "testImplementation"("org.hamcrest:hamcrest:2.2")
