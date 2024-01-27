@@ -33,13 +33,13 @@ configurations.all {
 
 dependencies {
     compileOnlyApi(libs.jspecify)
-    compileOnly("org.xerial:sqlite-jdbc:3.36.0.3")
+    compileOnly("org.xerial:sqlite-jdbc:3.45.0.0")
     compileOnly(libs.mongodb)
     compileOnly(libs.paper.api)
     testImplementation(libs.guava)
 
     "testImplementation"("com.google.code.findbugs:jsr305:1.3.9")
-    "testImplementation"("org.xerial:sqlite-jdbc:3.36.0.3")
+    "testImplementation"("org.xerial:sqlite-jdbc:3.45.0.0")
     "testImplementation"("com.googlecode.json-simple:json-simple:1.1.1")
 //    "testImplementation"("junit:junit:${Versions.JUNIT}")
 //    "testImplementation"("org.junit.jupiter:junit-jupiter-api:${Versions.JUPITER}")
