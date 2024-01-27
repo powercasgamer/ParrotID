@@ -1,0 +1,32 @@
+[versions]
+# minecraft
+minecraft = "1.20.4"
+paper = "1.20.4-R0.1-SNAPSHOT"
+
+# build-logic
+indra = "3.1.3"
+shadow = "8.1.1"
+kotlin = "1.9.22"
+idea-gradle = "1.1.7"
+run-task = "2.2.2"
+spotless = "6.23.3"
+ktlint = "1.0.1"
+
+[libraries]
+paper-api = { module = "io.papermc.paper:paper-api", version.ref = "paper" }
+
+# build-logic stuff
+indra-common = { module = "net.kyori:indra-common", version.ref = "indra" }
+indra-crossdoc = { module = "net.kyori:indra-crossdoc", version.ref = "indra" }
+indra-spotless = { module = "net.kyori:indra-licenser-spotless", version.ref = "indra" }
+indra-git = { module = "net.kyori:indra-git", version.ref = "indra" }
+shadow = { module = "com.github.johnrengelman:shadow", version.ref = "shadow" }
+kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-std = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+idea-gradle = { module = "gradle.plugin.org.jetbrains.gradle.plugin.idea-ext:gradle-idea-ext", version.ref = "idea-gradle" }
+run-task = { module = "xyz.jpenilla:run-task", version.ref = "run-task" }
+spotless = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
+jspecify = "org.jspecify:jspecify:0.3.0"
+
+[plugins]
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }

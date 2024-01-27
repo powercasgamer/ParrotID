@@ -1,0 +1,4 @@
+name: SquirrelID
+author: EngineHub
+version: ${pluginVersion}
+main: dev.mizule.squirrelid.paper.SquirrelID

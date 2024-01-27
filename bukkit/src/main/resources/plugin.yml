@@ -1,0 +1,4 @@
+name: ParrotID
+author: EngineHub
+version: ${pluginVersion}
+main: dev.mizule.parrotid.bukkit.ParrotID
