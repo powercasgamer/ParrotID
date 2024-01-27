@@ -3,20 +3,21 @@ plugins {
     id("checkstyle")
 }
 
-
-logger.lifecycle("""
+logger.lifecycle(
+    """
 *******************************************
- You are building SquirrelID!
+ You are building ParrotID!
 
  If you encounter trouble:
  1) Read README.md if you haven't yet
  2) Try running 'build' in a separate Gradle run
  3) Use gradlew and not gradle
- 4) If you still need help, ask on Discord! https://discord.gg/enginehub
+ 4) If you still need help, don't.
 
  Output files will be in build/libs
 *******************************************
-""")
+"""
+)
 
 repositories {
     mavenCentral()
@@ -26,18 +27,17 @@ repositories {
 
 configurations.all {
     resolutionStrategy {
-//        force("com.google.guava:guava:${Versions.GUAVA}")
+        force(libs.guava)
     }
 }
 
 dependencies {
-//    "implementation"("com.google.guava:guava:${Versions.GUAVA}")
     compileOnlyApi(libs.jspecify)
     compileOnly("org.xerial:sqlite-jdbc:3.36.0.3")
-    api("org.mongodb:mongodb-driver-sync:4.11.1")
-    compileOnly("io.papermc.paper:paper-api:1.20.4-R0.1-SNAPSHOT")
+    compileOnly(libs.mongodb)
+    compileOnly(libs.paper.api)
+    testImplementation(libs.guava)
 
-    "testImplementation"("com.google.guava:guava:33.0.0-jre")
     "testImplementation"("com.google.code.findbugs:jsr305:1.3.9")
     "testImplementation"("org.xerial:sqlite-jdbc:3.36.0.3")
     "testImplementation"("com.googlecode.json-simple:json-simple:1.1.1")
