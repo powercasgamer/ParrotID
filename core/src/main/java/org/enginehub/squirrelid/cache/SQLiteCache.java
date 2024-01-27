@@ -16,12 +16,11 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.enginehub.squirrelid.cache;
 
 import com.google.common.collect.ImmutableMap;
 import org.enginehub.squirrelid.Profile;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -119,7 +118,7 @@ public class SQLiteCache extends AbstractProfileCache {
     }
 
     @Override
-    public void putAll(@NotNull Iterable<Profile> entries) {
+    public void putAll(@NonNull Iterable<Profile> entries) {
         try {
             executePut(entries);
         } catch (SQLException e) {

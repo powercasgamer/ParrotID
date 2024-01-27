@@ -16,14 +16,12 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.enginehub.squirrelid.resolver;
 
 import com.google.common.collect.ImmutableList;
 import org.enginehub.squirrelid.Profile;
 import org.jspecify.annotations.Nullable;
 
-import java.io.IOException;
 import java.util.UUID;
 import java.util.function.Predicate;
 
@@ -52,8 +50,7 @@ public interface ProfileService {
 //     * @throws IOException thrown on I/O error
 //     * @throws InterruptedException thrown on interruption
      */
-    @Nullable
-    Profile findByName(String name);
+    @Nullable Profile findByName(String name);
 
     /**
      * Query the profile server by the given names.
@@ -83,8 +80,7 @@ public interface ProfileService {
 //     * @throws IOException thrown on I/O error
 //     * @throws InterruptedException thrown on interruption
      */
-    @Nullable
-    Profile findByUuid(UUID uuid);
+    @Nullable Profile findByUuid(UUID uuid);
 
     /**
      * Query the profile server by the given UUIDs.

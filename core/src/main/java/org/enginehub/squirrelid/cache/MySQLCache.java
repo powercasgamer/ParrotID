@@ -16,12 +16,12 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.enginehub.squirrelid.cache;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableMap;
 import org.enginehub.squirrelid.Profile;
+import org.jspecify.annotations.NonNull;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -34,7 +34,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.Nonnull;
+
 import javax.sql.DataSource;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -57,7 +57,7 @@ public class MySQLCache extends AbstractProfileCache {
     private DataSource dataSource;
     private Connection connection;
 
-    private MySQLCache(@Nonnull Object o, @Nonnull String tableName) throws SQLException {
+    private MySQLCache(@NonNull Object o, @NonNull String tableName) throws SQLException {
         checkNotNull(o);
         checkNotNull(tableName, "tableName cannot be null.");
         checkArgument(!tableName.isEmpty(), "tableName cannot be empty.");
@@ -82,7 +82,7 @@ public class MySQLCache extends AbstractProfileCache {
      * @return the newly constructed {@link MySQLCache}
      * @throws SQLException thrown if an error occurs whilst creating the tables
      */
-    public static MySQLCache create(@Nonnull DataSource dataSource)
+    public static MySQLCache create(@NonNull DataSource dataSource)
         throws SQLException {
         checkNotNull(dataSource, "dataSource cannot be null.");
         return new MySQLCache(dataSource, TABLE_NAME);
@@ -98,7 +98,7 @@ public class MySQLCache extends AbstractProfileCache {
      * @return the newly constructed {@link MySQLCache}
      * @throws SQLException thrown if an error occurs whilst creating the tables
      */
-    public static MySQLCache create(@Nonnull DataSource dataSource, @Nonnull String tableName)
+    public static MySQLCache create(@NonNull DataSource dataSource, @NonNull String tableName)
         throws SQLException {
         checkNotNull(dataSource, "dataSource cannot be null.");
         return new MySQLCache(dataSource, tableName);
@@ -112,7 +112,7 @@ public class MySQLCache extends AbstractProfileCache {
      * @return the newly constructed {@link MySQLCache}
      * @throws SQLException thrown if an error occurs whilst creating the tables
      */
-    public static MySQLCache create(@Nonnull Connection connection)
+    public static MySQLCache create(@NonNull Connection connection)
         throws SQLException {
         checkNotNull(connection, "connection cannot be null.");
         return new MySQLCache(connection, TABLE_NAME);
@@ -126,7 +126,7 @@ public class MySQLCache extends AbstractProfileCache {
      * @return the newly constructed {@link MySQLCache}
      * @throws SQLException thrown if an error occurs whilst creating the tables
      */
-    public static MySQLCache create(@Nonnull Connection connection, @Nonnull String tableName)
+    public static MySQLCache create(@NonNull Connection connection, @NonNull String tableName)
         throws SQLException {
         checkNotNull(connection, "connection cannot be null.");
         return new MySQLCache(connection, tableName);
@@ -242,8 +242,7 @@ public class MySQLCache extends AbstractProfileCache {
      *
      * @return table name
      */
-    @Nonnull
-    public String getTableName() {
+    @NonNull public String getTableName() {
         return tableName;
     }
 }

@@ -47,7 +47,6 @@ spotless {
         removeUnusedImports()
         formatAnnotations()
         applyCommon()
-        target("*/src/*/java/**/*.java")
     }
     kotlinGradle {
         applyCommon()

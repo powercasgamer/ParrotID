@@ -16,19 +16,17 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.enginehub.squirrelid.resolver;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
 import com.google.common.collect.Iterables;
+import com.google.gson.JsonObject;
 import dev.mizule.squirrelid.core.util.HttpUtil;
 import org.enginehub.squirrelid.Profile;
 import org.enginehub.squirrelid.util.HttpRequests;
 import org.enginehub.squirrelid.util.UUIDs;
-import org.json.simple.JSONObject;
 
-import javax.annotation.Nullable;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -43,6 +41,8 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.annotation.Nullable;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -86,8 +86,7 @@ public class CraftHeadHttpRepositoryService implements ProfileService {
         };
     }
 
-    @Nullable
-    @SuppressWarnings("unchecked")
+    @Nullable @SuppressWarnings("unchecked")
     private static Profile decodeProfileResult(Object entry) {
         try {
             if (entry instanceof Map) {
@@ -100,11 +99,11 @@ public class CraftHeadHttpRepositoryService implements ProfileService {
                     String name = String.valueOf(rawName);
                     return new Profile(uuid, name, System.currentTimeMillis());
                 }
-            } else if (entry instanceof JSONObject jsonObject) {
-                Object rawName = jsonObject.get("name");
-                UUID uuid = UUID.fromString(UUIDs.addDashes(String.valueOf(jsonObject.get("id"))));
+            } else if (entry instanceof JsonObject jsonObject) {
+                String rawName = jsonObject.get("name").getAsString();
+                UUID uuid = UUID.fromString(UUIDs.addDashes(String.valueOf(jsonObject.get("id").getAsString())));
                 if (rawName != null) {
-                    return new Profile(uuid, String.valueOf(rawName), System.currentTimeMillis());
+                    return new Profile(uuid, rawName, System.currentTimeMillis());
                 }
             }
         } catch (ClassCastException | IllegalArgumentException e) {
@@ -167,8 +166,7 @@ public class CraftHeadHttpRepositoryService implements ProfileService {
         return MAX_NAMES_PER_REQUEST;
     }
 
-    @Nullable
-    @Override
+    @Nullable @Override
     public Profile findByName(String name) {
         ImmutableList<Profile> profiles = findAllByName(ImmutableList.of(name));
         if (!profiles.isEmpty()) {
@@ -196,8 +194,7 @@ public class CraftHeadHttpRepositoryService implements ProfileService {
         }
     }
 
-    @Nullable
-    @Override
+    @Nullable @Override
     public Profile findByUuid(UUID uuid) {
         ImmutableList<Profile> profiles = findAllByUuid(ImmutableList.of(uuid));
         if (!profiles.isEmpty()) {

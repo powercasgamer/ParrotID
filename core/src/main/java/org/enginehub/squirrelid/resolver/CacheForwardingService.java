@@ -16,18 +16,18 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.enginehub.squirrelid.resolver;
 
 import com.google.common.collect.ImmutableList;
 import org.enginehub.squirrelid.Profile;
 import org.enginehub.squirrelid.cache.ProfileCache;
 
-import javax.annotation.Nullable;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.UUID;
 import java.util.function.Predicate;
+
+import javax.annotation.Nullable;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -71,8 +71,7 @@ public class CacheForwardingService implements ProfileService {
         return resolver.getIdealRequestLimit();
     }
 
-    @Nullable
-    @Override
+    @Nullable @Override
     public Profile findByName(String name) {
         // check cache first
         Profile profile = cache.getIfPresent(name);
@@ -110,8 +109,7 @@ public class CacheForwardingService implements ProfileService {
         });
     }
 
-    @Nullable
-    @Override
+    @Nullable @Override
     public Profile findByUuid(UUID uuid) {
         // check cache first
         Profile profile = cache.getIfPresent(uuid);

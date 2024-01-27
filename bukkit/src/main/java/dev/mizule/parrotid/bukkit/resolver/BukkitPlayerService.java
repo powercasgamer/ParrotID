@@ -16,7 +16,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package dev.mizule.parrotid.bukkit.resolver;
 
 import org.bukkit.Bukkit;
@@ -25,8 +24,9 @@ import org.bukkit.entity.Player;
 import org.enginehub.squirrelid.Profile;
 import org.enginehub.squirrelid.resolver.SingleRequestService;
 
-import javax.annotation.Nullable;
 import java.util.UUID;
+
+import javax.annotation.Nullable;
 
 /**
  * Checks the list of online players in Bukkit to find UUIDs.
@@ -47,8 +47,7 @@ public final class BukkitPlayerService extends SingleRequestService {
         return Integer.MAX_VALUE;
     }
 
-    @Nullable
-    @Override
+    @Nullable @Override
     public Profile findByName(String name) {
         Player player = Bukkit.getServer().getPlayerExact(name);
         if (player != null) {
@@ -58,8 +57,7 @@ public final class BukkitPlayerService extends SingleRequestService {
         }
     }
 
-    @Nullable
-    @Override
+    @Nullable @Override
     public Profile findByUuid(UUID uuid) {
         OfflinePlayer player = Bukkit.getOfflinePlayer(uuid);
         if (player.getName() != null) {

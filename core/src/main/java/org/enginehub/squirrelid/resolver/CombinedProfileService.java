@@ -16,7 +16,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.enginehub.squirrelid.resolver;
 
 import com.google.common.collect.ImmutableList;
@@ -28,6 +27,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 import java.util.function.Predicate;
+
 import javax.annotation.Nullable;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -70,8 +70,7 @@ public class CombinedProfileService implements ProfileService {
         return ideal;
     }
 
-    @Nullable
-    @Override
+    @Nullable @Override
     public Profile findByName(String name) {
         for (ProfileService service : services) {
             Profile profile = service.findByName(name);
@@ -130,8 +129,7 @@ public class CombinedProfileService implements ProfileService {
         }
     }
 
-    @Nullable
-    @Override
+    @Nullable @Override
     public Profile findByUuid(UUID uuid) {
         for (ProfileService service : services) {
             Profile profile = service.findByUuid(uuid);

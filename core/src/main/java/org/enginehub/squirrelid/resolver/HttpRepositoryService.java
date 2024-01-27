@@ -16,7 +16,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.enginehub.squirrelid.resolver;
 
 import com.google.common.collect.ImmutableList;
@@ -36,6 +35,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.annotation.Nullable;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -73,8 +73,7 @@ public class HttpRepositoryService implements ProfileService {
             -> HttpRequests.url("https://sessionserver.mojang.com/session/minecraft/profile/" + UUIDs.stripDashes(uuid.toString()));
     }
 
-    @Nullable
-    @SuppressWarnings("unchecked")
+    @Nullable @SuppressWarnings("unchecked")
     private static Profile decodeProfileResult(Object entry) {
         try {
             if (entry instanceof Map) {
@@ -148,8 +147,7 @@ public class HttpRepositoryService implements ProfileService {
         return MAX_NAMES_PER_REQUEST;
     }
 
-    @Nullable
-    @Override
+    @Nullable @Override
     public Profile findByName(String name) {
         ImmutableList<Profile> profiles = findAllByName(ImmutableList.of(name));
         if (!profiles.isEmpty()) {
@@ -177,8 +175,7 @@ public class HttpRepositoryService implements ProfileService {
         }
     }
 
-    @Nullable
-    @Override
+    @Nullable @Override
     public Profile findByUuid(UUID uuid) {
         ImmutableList<Profile> profiles = findAllByUuid(ImmutableList.of(uuid));
         if (!profiles.isEmpty()) {

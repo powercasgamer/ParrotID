@@ -16,7 +16,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.enginehub.squirrelid.resolver;
 
 import com.google.common.collect.ImmutableList;
@@ -104,8 +103,7 @@ public class ParallelProfileService implements ProfileService {
         return Math.min(profilesPerJob, resolver.getIdealRequestLimit());
     }
 
-    @Nullable
-    @Override
+    @Nullable @Override
     public Profile findByName(String name) {
         return resolver.findByName(name);
     }
@@ -164,8 +162,7 @@ public class ParallelProfileService implements ProfileService {
         }
     }
 
-    @Nullable
-    @Override
+    @Nullable @Override
     public Profile findByUuid(UUID uuid) {
         return resolver.findByUuid(uuid);
     }

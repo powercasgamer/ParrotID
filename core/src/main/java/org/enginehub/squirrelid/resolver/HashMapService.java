@@ -16,7 +16,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.enginehub.squirrelid.resolver;
 
 import org.enginehub.squirrelid.Profile;
@@ -26,6 +25,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+
 import javax.annotation.Nullable;
 
 /**
@@ -81,8 +81,7 @@ public final class HashMapService extends SingleRequestService {
         return Integer.MAX_VALUE;
     }
 
-    @Nullable
-    @Override
+    @Nullable @Override
     public Profile findByName(String name) {
         UUID uuid = nameToIdMap.get(name.toLowerCase(Locale.US));
         if (uuid != null) {
@@ -92,8 +91,7 @@ public final class HashMapService extends SingleRequestService {
         }
     }
 
-    @Nullable
-    @Override
+    @Nullable @Override
     public Profile findByUuid(UUID uuid) {
         String name = idToNameMap.get(uuid);
         if (name != null) {

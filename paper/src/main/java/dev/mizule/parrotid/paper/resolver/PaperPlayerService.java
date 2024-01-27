@@ -16,7 +16,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package dev.mizule.parrotid.paper.resolver;
 
 import org.bukkit.Bukkit;
@@ -65,8 +64,7 @@ public class PaperPlayerService extends SingleRequestService {
         return Integer.MAX_VALUE;
     }
 
-    @Nullable
-    @Override
+    @Nullable @Override
     public Profile findByName(String name) {
         com.destroystokyo.paper.profile.PlayerProfile profile = Bukkit.createProfile(name);
         if (profile.completeFromCache()) {
@@ -76,8 +74,7 @@ public class PaperPlayerService extends SingleRequestService {
         return null;
     }
 
-    @Nullable
-    @Override
+    @Nullable @Override
     public Profile findByUuid(UUID uuid) {
         com.destroystokyo.paper.profile.PlayerProfile profile = Bukkit.createProfile(uuid);
         if (profile.completeFromCache()) {
