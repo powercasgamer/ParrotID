@@ -47,7 +47,7 @@ dependencies {
     compileOnlyApi(libs.jspecify)
     compileOnly("org.xerial:sqlite-jdbc:3.45.0.0")
     compileOnly(libs.paper.api)
-    compileOnlyApi("org.xerial:sqlite-jdbc:3.36.0.3")
+    compileOnlyApi("org.xerial:sqlite-jdbc:3.45.2.0")
     compileOnlyApi(libs.mongodb)
     testImplementation(libs.guava)
     compileOnlyApi(libs.guava)
