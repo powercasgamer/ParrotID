@@ -45,7 +45,7 @@ configurations.all {
 
 dependencies {
     compileOnlyApi(libs.jspecify)
-    compileOnly("org.xerial:sqlite-jdbc:3.45.0.0")
+    compileOnly("org.xerial:sqlite-jdbc:3.45.2.0")
     compileOnly(libs.paper.api)
     compileOnlyApi("org.xerial:sqlite-jdbc:3.36.0.3")
     compileOnlyApi(libs.mongodb)
@@ -54,7 +54,7 @@ dependencies {
     compileOnlyApi(libs.gson)
     api(libs.caffeine)
     testImplementation(libs.gson)
-    "testImplementation"("org.xerial:sqlite-jdbc:3.45.0.0")
+    "testImplementation"("org.xerial:sqlite-jdbc:3.45.2.0")
     "testImplementation"("org.hamcrest:hamcrest:2.2")
     testImplementation(platform(libs.junit.bom))
     testImplementation(libs.junit.api)
