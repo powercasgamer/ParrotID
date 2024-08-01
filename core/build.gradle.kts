@@ -55,7 +55,7 @@ dependencies {
     api(libs.caffeine)
     testImplementation(libs.gson)
     "testImplementation"("org.xerial:sqlite-jdbc:3.45.0.0")
-    "testImplementation"("org.hamcrest:hamcrest:2.2")
+    "testImplementation"("org.hamcrest:hamcrest:3.0")
     testImplementation(platform(libs.junit.bom))
     testImplementation(libs.junit.api)
     testImplementation(libs.junit.engine)
